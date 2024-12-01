@@ -1,0 +1,36 @@
+{   
+    "name": "amplify-project",
+    "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:18",
+    "remoteUser": "node",
+    "mounts": [
+        {
+            "source": "${localWorkspaceFolder}/../.aws",
+            "target": "/home/node/.aws",
+            "type": "bind"
+        },
+        {
+            "source": "${localWorkspaceFolderBasename}-node_module",
+            "target": "${containerWorkspaceFolder}/node_modules",
+            "type": "volume"
+        }
+    ],
+    "features": {
+        "ghcr.io/devcontainers-extra/features/amplify-cli:2": {},
+        "ghcr.io/devcontainers-extra/features/aws-sso-cli:1": {},
+        "ghcr.io/devcontainers/features/git:1":{}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "amazonwebservices.aws-toolkit-vscode"
+            ]
+        }
+    },
+    "appPort": [
+        "3000:3000"
+    ],
+    "postCreateCommand": "sudo chown node node_modules",
+    "forwardPorts": [3000]
+}
